@@ -90,8 +90,6 @@ class DB:
         """
         id = -1
         try:
-            # First, get the ID of the most recently inserted restaurant (so we know which ID the new one should have)
-            # What will happen if there are no restaurants in the DB? Will exception be raised? In that case, deleting everything from the DB will cause a bug. Must be tested.
             latest_restaurant = self.collection.find({}).sort('id', -1).limit(1)
             if latest_restaurant.alive:
                 # If the latest restaurant entry was found
