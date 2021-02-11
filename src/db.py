@@ -8,7 +8,7 @@ class DB:
             self.db = client.viaplay
             self.collection = self.db[collection_name] # Contains all database information.
         except Exception as e:
-            raise 'Something went wrong while initializing database. Please check your MongoDB installation.'
+            print(e)
 
     def get_all_restaurants(self):
         restaurant_names = []
@@ -19,13 +19,19 @@ class DB:
         return restaurant_names
 
     def get_restaurant_info(self, id):
+        try:
+            id=int(id) 
+        except Exception as e:
+            print(e)
+        
         info = []
-        for restaurant in self.collection.find({"id": 0}):
-            info.append(restaurant['name'])
-            info.append(restaurant['opening_hours'])
-            info.append(restaurant['address'])
-            info.append(restaurant['phone_number'])
-            info.append(restaurant['website'])
+        for restaurant in self.collection.find({"id": id}):
+            id = restaurant['id']
+            name = restaurant['name']
+            opening_hours = restaurant['opening_hours']
+            address = restaurant['address']
+            
+            info.append({'id': id, 'name': name, 'opening_hours': opening_hours, 'address': address})
         return info
 
 def main():

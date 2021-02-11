@@ -13,6 +13,8 @@ def list_restaurants():
 @app.route('/restaurants/<id>', methods=['GET'])
 def restaurant_info(id):
     """Get more detailed information on a single restaurant."""
+    info = db.get_restaurant_info(id)
+    print("info", info)
     return jsonify(db.get_restaurant_info(id))
 
 app.run(host='localhost', port=5001)
