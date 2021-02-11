@@ -10,8 +10,8 @@ This repository contains an implementation of a REST API that can read and write
 **Libraries**
 
 * Python Standard Library >= 3.8.5
-* [Flask] (https://pypi.org/project/Flask/)
-* [pymongo] (https://pypi.org/project/pymongo/)
+* [Flask](https://pypi.org/project/Flask/)
+* [pymongo](https://pypi.org/project/pymongo/)
 
 ## Installation
 
