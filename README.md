@@ -84,3 +84,4 @@ Some of the suggested features you could try are listed here (Please attempt at 
 
 * Could be good to do some form of regex-check to validate data input from .json file for the add_restaurant POST method.
 * Prevent exact same data from being stored in the DB multiple times (to prevent DDoS attacks or other malicious use)
+* Enable user to add new restaurant without necessarily specifying all info_pieces?

@@ -103,8 +103,10 @@ class DB:
         insert_data['id'] = id
 
         info_pieces = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo']
-        for info_piece in info_pieces:
-            insert_data[info_piece] = data[info_piece]
+        try:
+            for info_piece in info_pieces:
+                insert_data[info_piece] = data[info_piece]
+        except Exception: return "Failed during data retrieval, please double-check the format of your inputs"
         
         try:
             self.collection.insert_one(insert_data)
