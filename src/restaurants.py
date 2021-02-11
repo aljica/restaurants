@@ -38,4 +38,5 @@ def add_restaurant():
     return db.add_new_restaurant(data)
 
 
-app.run(host='localhost', port=5001)
+if __name__ == "__main__":
+    app.run(host='localhost', port=5001)
