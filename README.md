@@ -58,7 +58,7 @@ You can now visit: <br>
 where you will see a list of all restaurants. <br>
 Visit: `http://localhost:5001/restaurants/<id>` to see more detailed information on a specific restaurant. <br>
 
-If you'd like to add a new restaurant, input the relevant information in test.json (follow the same format for all data inputs!), open a new terminal and run the following command: <br>
+If you'd like to add a new restaurant, input the relevant information in test.json (while following the same format for all data inputs!), open a new terminal and run the following command: <br>
 `curl -i -H "Content-Type: application/json" -X POST -d @test.json http://localhost:5001/add_restaurant`
 
 ## Tasks
