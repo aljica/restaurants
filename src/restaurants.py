@@ -38,8 +38,13 @@ def restaurant_info(id):
 
 @app.route('/add_restaurant', methods=['POST'])
 def add_restaurant():
-    """ Test using:
-    curl -i -H "Content-Type: application/json" -X POST -d @test.json http://localhost:5001/add_restaurant
+    """Add new restaurant to database
+
+    Parameters:
+    None 
+
+    Returns:
+    _ (str): OK or Exception message
     """
 
     payload = request.json
