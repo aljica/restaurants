@@ -18,6 +18,16 @@ class DB:
             restaurant_names.append({'id': id, 'name': name})
         return restaurant_names
 
+    def get_restaurant_info(self, id):
+        info = []
+        for restaurant in self.collection.find({"id": 0}):
+            info.append(restaurant['name'])
+            info.append(restaurant['opening_hours'])
+            info.append(restaurant['address'])
+            info.append(restaurant['phone_number'])
+            info.append(restaurant['website'])
+        return info
+
 def main():
     db = DB('restaurants')
     restaurant_names = db.get_all_restaurants()
