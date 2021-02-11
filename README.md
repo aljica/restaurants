@@ -15,11 +15,11 @@ This repository contains an implementation of a REST API that can read and write
 
 ## Installation
 
-Install Python3, MongoDB and the required libraries.
+Install Python3, MongoDB and the required libraries. <br>
 Ubuntu/Debian: <br>
-`sudo apt install python3`
-`sudo apt install mongodb`
-`sudo apt install python3-pip`
+`sudo apt install python3` <br>
+`sudo apt install mongodb` <br>
+`sudo apt install python3-pip` <br>
 `pip3 install -r requirements.txt` (This will install flask and pymongo - it is advisable that you run this command inside the virtual environment, see below)
 
 Clone this repository (NOTE: You need to generate a GitHub SSH Key first! If you cannot do this, download this repo using via HTTPS): <br>
