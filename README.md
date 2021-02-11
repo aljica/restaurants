@@ -45,8 +45,8 @@ Ensure MongoDB is running: <br>
 `sudo systemctl start mongodb`
 
 Import db.json into MongoDB: <br>
-`cd data`
-`mongoimport --host localhost --port 27017 --db viaplay --collection restaurants --type json --file ./db.json --jsonArray`
+`cd data` <br>
+`mongoimport --host localhost --port 27017 --db viaplay --collection restaurants --type json --file ./db.json --jsonArray` <br>
 `cd ..`
 
 Start the server: <br>
