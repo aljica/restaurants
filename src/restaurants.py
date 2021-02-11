@@ -33,11 +33,9 @@ def add_restaurant():
     info_pieces = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo']
     try:
         for info_piece in info_pieces: data.append(payload[info_piece])
-    except KeyError: return {}
+    except KeyError: return "Failed, please supply all data using the correct format."
 
-    db.insert_restaurant(data)
-
-    return name
+    return db.add_new_restaurant(data)
 
 
 app.run(host='localhost', port=5001)
