@@ -1,8 +1,38 @@
 from pymongo import MongoClient 
 
 class DB:
+    """
+    A class used to represent a database.
+
+    Attributes
+    ----------
+    db (Database Object): 
+        MongoClient Database Object
+    
+    collection (Collection Object): 
+        MongoClient Collection Object
+
+    Methods
+    -------
+    get_all_restaurants(): 
+        Returns a list of all restaurants in the database.
+
+    get_restaurant_info(id): 
+        Returns detailed information on a single specified (by id) restaurant.
+
+    add_new_restaurant(data):
+        Adds a new restaurant with the information provided in parameter `data` to the database.
+    """
+
     def __init__(self, collection_name = ""):
-        # Database initialization
+        """Database initilization
+
+        Parameters:
+        collection_name = ""
+
+        Returns:
+        None
+        """
         try:
             client = MongoClient()
             self.db = client.viaplay
@@ -12,6 +42,14 @@ class DB:
 
     
     def get_all_restaurants(self):
+        """Get all restaurants in database
+
+        Parameters:
+        None 
+
+        Returns:
+        List of restaurant id:s and names
+        """
         restaurant_names = []
         for restaurant in self.collection.find():
             id = restaurant['id']
@@ -21,6 +59,14 @@ class DB:
 
     
     def get_restaurant_info(self, id):
+        """Get information on a specific restaurant
+
+        Parameters:
+        id (int): Restaurant ID
+
+        Returns:
+        info (list): Detailed restaurant information
+        """
         info = []
         for restaurant in self.collection.find({"id": id}):
             try:
@@ -31,6 +77,14 @@ class DB:
 
     
     def add_new_restaurant(self, data):
+        """Add new restaurant to the database
+
+        Parameters:
+        data (list): List containing information on the new restaurant to be added
+
+        Returns:
+        _ (str): OK or Exception message
+        """
         id = -1
         try:
             # First, get the ID of the most recently inserted restaurant (so we know which ID the new one should have)
@@ -48,9 +102,7 @@ class DB:
 def main():
     db = DB('restaurants')
     restaurant_names = db.get_all_restaurants()
-    print(restaurant_names)
 
 
 if __name__ == "__main__":
     main()
-    #pass
