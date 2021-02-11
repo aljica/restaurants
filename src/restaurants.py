@@ -3,19 +3,29 @@ from pymongo import MongoClient
 from db import DB
 
 
-app = Flask(__name__)
-db = DB('restaurants')
-
-
 @app.route('/restaurants', methods=['GET'])
 def list_restaurants():
-    """Get a list of all restaurants."""
+    """Get a list of all restaurants
+    
+    Parameters:
+    None
+
+    Returns:
+    _ (str): Jsonified restaurant data
+    """
     return jsonify(db.get_all_restaurants())
 
 
 @app.route('/restaurants/<id>', methods=['GET'])
 def restaurant_info(id):
-    """Get more detailed information on a single restaurant."""
+    """Get more detailed information on a single restaurant
+    
+    Parameters:
+    id (str): Restaurant ID
+
+    Returns:
+    _ (str): Jsonified single restaurant data
+    """
     try: id = int(id) 
     except Exception: return {}
     
@@ -39,4 +49,6 @@ def add_restaurant():
 
 
 if __name__ == "__main__":
+    app = Flask(__name__)
+    db = DB('restaurants')
     app.run(host='localhost', port=5001)
