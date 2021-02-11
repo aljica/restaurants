@@ -69,3 +69,7 @@ Some of the suggested features you could try are listed here (Please attempt at 
 * Functionality to delete restaurants from the DB through the API
 * Functionality to fetch a sorted list of restaurants based on relevant attributes
 * Functionality to fetch a filtered list of restaurants based on relevant attributes
+
+## Possible improvements
+
+* Could be good to do some form of regex-check to validate data input from .json file for the add_restaurant POST method.
