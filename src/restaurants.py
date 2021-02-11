@@ -3,6 +3,10 @@ from pymongo import MongoClient
 from db import DB
 
 
+app = Flask(__name__)
+db = DB('restaurants')
+
+
 @app.route('/restaurants', methods=['GET'])
 def list_restaurants():
     """Get a list of all restaurants
@@ -49,6 +53,4 @@ def add_restaurant():
 
 
 if __name__ == "__main__":
-    app = Flask(__name__)
-    db = DB('restaurants')
     app.run(host='localhost', port=5001)
