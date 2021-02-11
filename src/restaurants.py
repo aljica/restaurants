@@ -15,12 +15,13 @@ def list_restaurants():
     None
 
     Returns:
-    _ (str): Jsonified restaurant data
+    _ (str): Jsonified restaurant data OR
+    _ (list): Empty list if no restaurants are in the database.
     """
     return jsonify(db.get_all_restaurants())
 
 
-@app.route('/restaurants/<id>', methods=['GET'])
+@app.route('/restaurants/<id>', strict_slashes=False, methods=['GET'])
 def restaurant_info(id):
     """Get more detailed information on a single restaurant
     
@@ -28,7 +29,8 @@ def restaurant_info(id):
     id (str): Restaurant ID
 
     Returns:
-    _ (str): Jsonified single restaurant data
+    _ (str): Jsonified single restaurant data OR
+    _ (dict): If integer conversion fails or if restaurant ID is non-existent in the database
     """
     try: id = int(id) 
     except Exception: return {}
@@ -36,7 +38,7 @@ def restaurant_info(id):
     return jsonify(db.get_restaurant_info(id))
 
 
-@app.route('/add_restaurant', methods=['POST'])
+@app.route('/add_restaurant', strict_slashes=False, methods=['POST'])
 def add_restaurant():
     """Add new restaurant to database
 
@@ -55,6 +57,23 @@ def add_restaurant():
     except KeyError: return "Failed, please supply all data using the correct format."
 
     return db.add_new_restaurant(data)
+
+
+@app.route('/delete_restaurant', strict_slashes=False, methods=['POST'])
+def delete_restaurant(id):
+    """Delete a restaurant from the database
+
+    Parameters:
+    id (str): Restaurant ID
+
+    Returns:
+    _ (str): OK or Exception message
+    _ (dict): If integer conversion fails or if restaurant ID is non-existent in the database
+    """
+    try: id = int(id)
+    except Exception: return {}
+
+    return db.delete_restaurant(id)
 
 
 if __name__ == "__main__":
