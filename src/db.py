@@ -37,16 +37,12 @@ class DB:
             # What will happen if there are no restaurants in the DB? Will exception be raised? In that case, deleting everything from the DB will cause a bug. Must be tested.
             latest_restaurant = self.collection.find({}).sort('id', -1).limit(1)
             for doc in latest_restaurant: id = doc['id'] + 1
-        except Exception: 
-            print("FAILED FIRST")
-            return "Failed during ID creation"
+        except Exception: return "Failed during ID creation"
 
         try:
             self.collection.insert_one({'opening_hours': data[0], 'address': data[1], 'phone_number': data[2], 'location': data[3], 'icon': data[4], 'name': data[5], 'price_level': data[6], 'rating': data[7], 'google_maps_url': data[8], 'website': data[9], 'photo': data[10], 'id': id})
             return "OK"
-        except Exception:
-            print("FAILED")
-            return "Failed during data insertion, double-check the format of your inputs"
+        except Exception: return "Failed during data insertion, double-check the format of your inputs"
 
 
 def main():
