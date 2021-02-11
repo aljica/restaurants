@@ -5,13 +5,14 @@ This repository contains an implementation of a REST API that can read and write
 ## Prerequisites
 
 * Python3
-* MongoDB
+* [MongoDB](https://www.mongodb.com/)
+* [Ngrok](https://ngrok.com/)
 
 **Libraries**
 
 * Python Standard Library >= 3.8.5
-* [Flask] (https://pypi.org/project/Flask/)
-* [pymongo] (https://pypi.org/project/pymongo/)
+* [Flask](https://pypi.org/project/Flask/)
+* [pymongo](https://pypi.org/project/pymongo/)
 
 ## Installation
 
@@ -52,6 +53,12 @@ Import db.json into MongoDB: <br>
 Start the server: <br>
 `cd src` <br>
 `python3 restaurants.py`
+
+If you wish, you can host your API server using Ngrok. It's light-weight and simple. <br>
+Download Ngrok and follow the instructions on their website (see website hyper-link above). <br>
+Run `./ngrok http 5001` to launch ngrok. <br>
+You can now visit the ngrok site generated for you (<hash>.io/restaurants) and visit all the API end-points there instead of at localhost. <br>
+For the sake of this guide, we'll assume you're running this API on localhost.
 
 You can now visit: <br>
 `http://localhost:5001/restaurants` <br>
