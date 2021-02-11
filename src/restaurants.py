@@ -7,7 +7,7 @@ app = Flask(__name__)
 db = DB('restaurants')
 
 
-@app.route('/restaurants', methods=['GET'])
+@app.route('/restaurants', strict_slashes=False, methods=['GET'])
 def list_restaurants():
     """Get a list of all restaurants
     
