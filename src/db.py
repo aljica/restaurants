@@ -89,16 +89,13 @@ class DB:
         _ (str): OK or Exception message
         """
         insert_data = {}
-        id = -1
+        id = 0
         try:
             latest_restaurant = self.collection.find({}).sort('id', -1).limit(1)
             if latest_restaurant.alive:
                 # If the latest restaurant entry was found
                 for doc in latest_restaurant: 
                     id = doc['id'] + 1
-            else:
-                # No entries in the database, so id should be 0.
-                id = 0
         except Exception: return "Failed during ID creation"
         insert_data['id'] = id
 
@@ -130,7 +127,7 @@ class DB:
 
 
 def main():
-    db = DB('restaurants')
+    db = DB('viaplay')
 
 
 if __name__ == "__main__":
