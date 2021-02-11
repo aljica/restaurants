@@ -68,10 +68,9 @@ def delete_restaurant(id):
 
     Returns:
     _ (str): OK or Exception message
-    _ (dict): If integer conversion fails or if restaurant ID is non-existent in the database
     """
     try: id = int(id)
-    except Exception: return {}
+    except Exception: return "Failed integer conversion"
 
     return db.delete_restaurant(id)
 
