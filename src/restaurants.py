@@ -5,7 +5,7 @@ from db import DB
 app = Flask(__name__)
 db = DB('restaurants')
 
-@app.route('/', methods=['GET'])
+@app.route('/restaurants', methods=['GET'])
 def home():
     return jsonify(db.get_all_restaurants())
 
