@@ -16,6 +16,9 @@ def list_restaurants():
 @app.route('/restaurants/<id>', methods=['GET'])
 def restaurant_info(id):
     """Get more detailed information on a single restaurant."""
+    try: id = int(id) 
+    except Exception: return {}
+    
     return jsonify(db.get_restaurant_info(id))
 
 

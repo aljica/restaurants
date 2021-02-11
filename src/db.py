@@ -21,11 +21,6 @@ class DB:
 
     
     def get_restaurant_info(self, id):
-        try:
-            id=int(id) 
-        except Exception as e:
-            print(e)
-        
         info = []
         for restaurant in self.collection.find({"id": id}):
             id = restaurant['id']
