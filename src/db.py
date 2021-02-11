@@ -22,6 +22,9 @@ class DB:
 
     add_new_restaurant(data):
         Adds a new restaurant with the information provided in parameter `data` to the database.
+
+    delete_restaurant(id):
+        Deletes a restaurant from the database.
     """
 
     def __init__(self, collection_name = ""):
@@ -90,13 +93,34 @@ class DB:
             # First, get the ID of the most recently inserted restaurant (so we know which ID the new one should have)
             # What will happen if there are no restaurants in the DB? Will exception be raised? In that case, deleting everything from the DB will cause a bug. Must be tested.
             latest_restaurant = self.collection.find({}).sort('id', -1).limit(1)
-            for doc in latest_restaurant: id = doc['id'] + 1
+            if latest_restaurant.alive:
+                # If the latest restaurant entry was found
+                for doc in latest_restaurant: 
+                    id = doc['id'] + 1
+            else:
+                # No entries in the database, so id should be 0.
+                id = 0
         except Exception: return "Failed during ID creation"
 
         try:
             self.collection.insert_one({'opening_hours': data[0], 'address': data[1], 'phone_number': data[2], 'location': data[3], 'icon': data[4], 'name': data[5], 'price_level': data[6], 'rating': data[7], 'google_maps_url': data[8], 'website': data[9], 'photo': data[10], 'id': id})
             return "OK"
         except Exception: return "Failed during data insertion, double-check the format of your inputs"
+
+
+    def delete_restaurant(self, id):
+        """Delete a restaurant from the database.
+
+        Parameters:
+        id (int): Restaurant id
+
+        Returns:
+        _ (str): OK or Exception message
+        """
+        try: 
+            self.collection.delete_one({'id': id})
+            return "OK"
+        except Exception: return "Failed during deletion"
 
 
 def main():
