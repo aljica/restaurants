@@ -117,9 +117,7 @@ class DB:
         """
         try: 
             result = self.collection.delete_one({'id': id})
-            num_deleted = result.deleted_count
-            return_msg = "OK, " + num_deleted + " deleted entries."
-            return return_msg
+            return "OK"
         except Exception: return "Failed during deletion"
 
 
