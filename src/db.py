@@ -131,7 +131,6 @@ class DB:
 
 def main():
     db = DB('restaurants')
-    restaurant_names = db.get_all_restaurants()
 
 
 if __name__ == "__main__":
