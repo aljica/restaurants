@@ -5,7 +5,7 @@ This repository contains an implementation of a REST API that can read and write
 ## Prerequisites
 
 * Python3
-* MongoDB
+* [MongoDB](https://www.mongodb.com/)
 
 **Libraries**
 
