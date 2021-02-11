@@ -23,12 +23,10 @@ class DB:
     def get_restaurant_info(self, id):
         info = []
         for restaurant in self.collection.find({"id": id}):
-            id = restaurant['id']
-            name = restaurant['name']
-            opening_hours = restaurant['opening_hours']
-            address = restaurant['address']
-            
-            info.append({'id': id, 'name': name, 'opening_hours': opening_hours, 'address': address})
+            try:
+                info.append({'id': restaurant['id'], 'name': restaurant['name'], 'opening_hours': restaurant['opening_hours'], 'address': restaurant['address']})
+            except KeyError: return {}
+        
         return info
 
     
