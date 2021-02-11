@@ -68,6 +68,9 @@ Visit: `http://localhost:5001/restaurants/<id>` to see more detailed information
 If you'd like to add a new restaurant, input the relevant information in test.json (while following the same format for all data inputs!), open a new terminal and run the following command: <br>
 `curl -i -H "Content-Type: application/json" -X POST -d @test.json http://localhost:5001/add_restaurant`
 
+If you'd like to delete an existing restaurant, open a new terminal and run the following command: <br>
+`curl -X POST localhost:5001/delete_restaurant/<id>`
+
 ## Tasks
 Some of the suggested features you could try are listed here (Please attempt at least three features here)
 * An endpoint that lets the client get a list of all restaurants 

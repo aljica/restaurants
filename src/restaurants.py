@@ -59,7 +59,7 @@ def add_restaurant():
     return db.add_new_restaurant(data)
 
 
-@app.route('/delete_restaurant', strict_slashes=False, methods=['POST'])
+@app.route('/delete_restaurant/<id>', strict_slashes=False, methods=['POST'])
 def delete_restaurant(id):
     """Delete a restaurant from the database
 
