@@ -41,7 +41,7 @@ class DB:
         pass
 
     
-    def insert_restaurant(self, opening_hours = [], address = "", phone_number = "", location = {}, icon = "", name = "", price_level = 0, rating = 0, google_maps_url = "", website = "", photo = ""):
+    def insert_restaurant(self, data):
         pass
 
 

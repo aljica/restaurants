@@ -16,8 +16,6 @@ def list_restaurants():
 @app.route('/restaurants/<id>', methods=['GET'])
 def restaurant_info(id):
     """Get more detailed information on a single restaurant."""
-    info = db.get_restaurant_info(id)
-    print("info", info)
     return jsonify(db.get_restaurant_info(id))
 
 
@@ -28,7 +26,14 @@ def add_restaurant():
     """
 
     payload = request.json
-    name = payload['name']
+    data = []
+    info_pieces = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo']
+    try:
+        for info_piece in info_pieces: data.append(payload[info_piece])
+    except KeyError: return {}
+
+    db.insert_restaurant(data)
+
     return name
 
 
