@@ -88,6 +88,7 @@ class DB:
         Returns:
         _ (str): OK or Exception message
         """
+        insert_data = {}
         id = -1
         try:
             latest_restaurant = self.collection.find({}).sort('id', -1).limit(1)
@@ -99,9 +100,14 @@ class DB:
                 # No entries in the database, so id should be 0.
                 id = 0
         except Exception: return "Failed during ID creation"
+        insert_data['id'] = id
 
+        info_pieces = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo']
+        for info_piece in info_pieces:
+            insert_data[info_piece] = data[info_piece]
+        
         try:
-            self.collection.insert_one({'opening_hours': data[0], 'address': data[1], 'phone_number': data[2], 'location': data[3], 'icon': data[4], 'name': data[5], 'price_level': data[6], 'rating': data[7], 'google_maps_url': data[8], 'website': data[9], 'photo': data[10], 'id': id})
+            self.collection.insert_one(insert_data)
             return "OK"
         except Exception: return "Failed during data insertion, double-check the format of your inputs"
 

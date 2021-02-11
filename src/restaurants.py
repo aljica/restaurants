@@ -50,13 +50,8 @@ def add_restaurant():
     """
 
     payload = request.json
-    data = []
-    info_pieces = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo']
-    try:
-        for info_piece in info_pieces: data.append(payload[info_piece])
-    except KeyError: return "Failed, please supply all data using the correct format."
 
-    return db.add_new_restaurant(data)
+    return db.add_new_restaurant(payload)
 
 
 @app.route('/delete_restaurant/<id>', strict_slashes=False, methods=['POST'])
