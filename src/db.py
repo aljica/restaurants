@@ -25,6 +25,9 @@ class DB:
     get_restaurant_info(id): 
         Returns detailed information on a single specified (by id) restaurant.
 
+    create_new_id():
+        Creates new restaurant ID.
+
     add_new_restaurant(data):
         Adds a new restaurant with the information provided in parameter `data` to the database.
 
@@ -93,7 +96,27 @@ class DB:
                         continue
         return info
 
-    
+
+    def create_new_id(self):
+        """Creates new restaurant ID
+
+        Parameters:
+        None
+
+        Returns:
+        id (int): Restaurant ID
+        """
+        id = 0
+        try:
+            latest_restaurant = self.collection.find({}).sort('id', -1).limit(1)
+            if latest_restaurant.alive:
+                # If the restaurant with highest id was found
+                for doc in latest_restaurant: 
+                    id = doc['id'] + 1
+        except Exception: pass
+        return id
+
+
     def add_new_restaurant(self, data):
         """Add new restaurant to the database
 
@@ -105,14 +128,7 @@ class DB:
         """
         # Create new ID
         insert_data = {}
-        id = 0
-        try:
-            latest_restaurant = self.collection.find({}).sort('id', -1).limit(1)
-            if latest_restaurant.alive:
-                # If the latest restaurant entry was found
-                for doc in latest_restaurant: 
-                    id = doc['id'] + 1
-        except Exception: return "Failed during ID creation"
+        id = self.create_new_id()
         insert_data['id'] = id
 
         for info_piece in INFO_PIECES:
