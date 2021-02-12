@@ -55,8 +55,10 @@ class DB:
         """
         restaurant_names = []
         for restaurant in self.collection.find():
-            id = restaurant['id']
-            name = restaurant['name']
+            try:
+                id = restaurant['id']
+                name = restaurant['name']
+            except KeyError: return "Internal DB error, looks like some restaurants don't have ID and/or name."
             restaurant_names.append({'id': id, 'name': name})
         return restaurant_names
 
@@ -131,9 +133,9 @@ class DB:
         except Exception: return "Failed during deletion"
 
 
-def main():
-    db = DB('viaplay')
+#def main():
+#    db = DB('viaplay')
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()
