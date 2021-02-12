@@ -71,6 +71,9 @@ If you'd like to add a new restaurant, input the relevant information in test.js
 If you'd like to delete an existing restaurant, open a new terminal and run the following command: <br>
 `curl -X POST localhost:5001/delete_restaurant/<id>`
 
+If you'd like to delete multiple existing restaurants at once, create a .json file and write down all the restaurant ID's in a list []. Then, run the following command in a new terminal: <br>
+`curl -i -H "Content-Type: application/json" -X POST -d @restaurant_ids.json http://localhost:5001/delete_restaurants`
+
 ## Tasks
 Some of the suggested features you could try are listed here (Please attempt at least three features here)
 * An endpoint that lets the client get a list of all restaurants 
