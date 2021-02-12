@@ -1,7 +1,7 @@
 from pymongo import MongoClient 
 
 
-INFO_PIECES = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo']
+INFO_PIECES = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo', 'description']
 MUST_HAVES = ['opening_hours', 'address', 'name']
 
 
