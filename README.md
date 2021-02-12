@@ -14,7 +14,7 @@ This repository contains an implementation of a REST API that can read and write
 * [Flask](https://pypi.org/project/Flask/)
 * [pymongo](https://pypi.org/project/pymongo/)
 
-## Installation
+## Installation & Usage Instructions
 
 Install Python3, MongoDB and the required libraries. <br>
 Ubuntu/Debian: <br>
