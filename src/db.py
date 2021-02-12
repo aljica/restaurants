@@ -18,6 +18,9 @@ class DB:
     get_all_restaurants(): 
         Returns a list of all restaurants in the database.
 
+    validate_data(info, info_piece):
+        Validates input data from .json file when adding new restaurants.
+
     get_info(restaurant):
         Extract the necessary information from a restaurant mongoDB collection or dictionary containing information on a restaurant.
 
@@ -75,7 +78,7 @@ class DB:
 
 
     def validate_data(self, info, info_piece):
-        """Validate data in .json files
+        """Validates input data from .json file when adding new restaurants.
 
         Parameters:
         info (str OR int OR list OR dict): The information to be validated
