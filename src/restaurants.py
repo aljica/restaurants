@@ -82,7 +82,6 @@ def delete_restaurants():
     _ (str): OK or Exception message
     """
     ids = request.json
-    print(ids)
 
     for id in ids:
         try: id = int(id) 
