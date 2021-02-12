@@ -100,6 +100,7 @@ class DB:
         Returns:
         _ (str): ID of new restaurant or Exception message
         """
+        # Create new ID
         insert_data = {}
         id = 0
         try:
