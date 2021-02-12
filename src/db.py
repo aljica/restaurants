@@ -163,6 +163,7 @@ class DB:
             return "OK"
         except Exception: return "Failed during deletion"
     
+   
     def delete_restaurants(self, ids):
         """Delete multiple restaurants from the database
 
