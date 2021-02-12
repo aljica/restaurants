@@ -20,7 +20,7 @@ class TestDB(unittest.TestCase):
         ]
 
         for case in test_cases:
-            id = self.database.add_new_restaurant(case['data'])
+            id = self.database.add_new_restaurants(case['data'])
             
             try:
                 id=int(id)
@@ -28,8 +28,8 @@ class TestDB(unittest.TestCase):
                 print("Failed integer conversion")
             
             info = self.database.get_restaurant_info(id)
-            name = 0 
-            pass
+            name = info['name']
+            self.assertEqual(name, case['name'])
 
             #self.assertEqual(id, case['expected'])
 
