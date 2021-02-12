@@ -71,5 +71,25 @@ def delete_restaurant(id):
     return db.delete_restaurant(id)
 
 
+@app.route('/delete_restaurants', strict_slashes=False, methods=['POST'])
+def delete_restaurants():
+    """Delete multiple restaurants from the database
+
+    Parameters:
+    None
+
+    Returns:
+    _ (str): OK or Exception message
+    """
+    ids = request.json
+    print(ids)
+
+    for id in ids:
+        try: id = int(id) 
+        except Exception: return "Failed integer conversion"
+    
+    return db.delete_restaurants(ids)
+
+
 if __name__ == "__main__":
     app.run(host='localhost', port=5001)

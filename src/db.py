@@ -30,6 +30,9 @@ class DB:
 
     delete_restaurant(id):
         Deletes a restaurant from the database.
+
+    delete_restaurants(ids):
+        Deletes multiple restaurants from the database.
     """
 
     def __init__(self, collection_name = ""):
@@ -129,7 +132,7 @@ class DB:
 
 
     def delete_restaurant(self, id):
-        """Delete a restaurant from the database.
+        """Delete a restaurant from the database
 
         Parameters:
         id (int): Restaurant id
@@ -141,3 +144,17 @@ class DB:
             result = self.collection.delete_one({'id': id})
             return "OK"
         except Exception: return "Failed during deletion"
+    
+    def delete_restaurants(self, ids):
+        """Delete multiple restaurants from the database
+
+        Parameters:
+        ids (list): List of restaurant IDs
+
+        Returns:
+        _ (str): OK or Exception message
+        """
+        for id in ids:
+            result = self.delete_restaurant(id)
+            if result != "OK": return result
+        return "OK"
