@@ -121,6 +121,7 @@ class DB:
                 else:
                     continue
         
+        # Insert into DB
         try:
             self.collection.insert_one(insert_data)
             return str(id)
