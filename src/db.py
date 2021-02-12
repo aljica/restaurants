@@ -121,7 +121,7 @@ class DB:
         """Add new restaurants to the database
 
         Parameters:
-        data (dict): Dict containing information on the new restaurant to be added
+        data (dict): Dict containing information on the new restaurants to be added
 
         Returns:
         _ (str): OK or Exception message
