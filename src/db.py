@@ -114,7 +114,7 @@ class DB:
         
         try:
             self.collection.insert_one(insert_data)
-            return str(id) + " restaurant ID"
+            return str(id)
         except Exception: return "Failed during data insertion, double-check the format of your inputs"
 
 
