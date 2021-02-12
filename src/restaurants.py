@@ -46,7 +46,7 @@ def add_restaurant():
     None 
 
     Returns:
-    _ (str): OK or Exception message
+    _ (str): ID of new restaurant or Exception message
     """
 
     payload = request.json

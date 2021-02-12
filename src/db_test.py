@@ -20,7 +20,7 @@ class TestDB(unittest.TestCase):
         ]
 
         for case in test_cases:
-            got = self.database.add_new_restaurant(case['data'])
+            id = self.database.add_new_restaurant(case['data'])
             self.assertEqual(got, case['expected'])
 
 
