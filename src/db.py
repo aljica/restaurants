@@ -1,5 +1,10 @@
 from pymongo import MongoClient 
 
+
+INFO_PIECES = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo']
+MUST_HAVES = ['opening_hours', 'address', 'name']
+
+
 class DB:
     """
     A class used to represent a database.
@@ -101,13 +106,11 @@ class DB:
         except Exception: return "Failed during ID creation"
         insert_data['id'] = id
 
-        info_pieces = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo']
-        must_haves = ['opening_hours', 'address', 'name']
-        for info_piece in info_pieces:
+        for info_piece in INFO_PIECES:
             try:
                 insert_data[info_piece] = data[info_piece]
             except KeyError:
-                if info_piece in must_haves:
+                if info_piece in MUST_HAVES:
                     return "Failed during data retrieval from your .json file, please double-check the format of your inputs. Must haves are opening_hours, address and name."
                 else:
                     continue
