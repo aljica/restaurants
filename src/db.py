@@ -100,10 +100,15 @@ class DB:
         insert_data['id'] = id
 
         info_pieces = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo']
-        try:
-            for info_piece in info_pieces:
+        must_haves = ['opening_hours', 'address', 'name']
+        for info_piece in info_pieces:
+            try:
                 insert_data[info_piece] = data[info_piece]
-        except Exception: return "Failed during data retrieval, please double-check the format of your inputs"
+            except KeyError:
+                if info_piece in must_haves:
+                    return "Failed during data retrieval from your .json file, please double-check the format of your inputs. Must haves are opening_hours, address and name."
+                else:
+                    continue
         
         try:
             self.collection.insert_one(insert_data)
