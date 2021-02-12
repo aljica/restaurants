@@ -28,8 +28,8 @@ class DB:
     create_new_id():
         Creates new restaurant ID.
 
-    add_new_restaurant(data):
-        Adds a new restaurant with the information provided in parameter `data` to the database.
+    add_new_restaurants(data):
+        Adds new restaurants with the information provided in parameter `data` to the database.
 
     delete_restaurant(id):
         Deletes a restaurant from the database.
@@ -117,8 +117,8 @@ class DB:
         return id
 
 
-    def add_new_restaurant(self, restaurants):
-        """Add new restaurant to the database
+    def add_new_restaurants(self, restaurants):
+        """Add new restaurants to the database
 
         Parameters:
         data (dict): Dict containing information on the new restaurant to be added

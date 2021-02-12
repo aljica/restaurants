@@ -39,9 +39,9 @@ def restaurant_info(id):
     return jsonify(db.get_restaurant_info(id))
 
 
-@app.route('/add_restaurant', strict_slashes=False, methods=['POST'])
-def add_restaurant():
-    """Add new restaurant to database
+@app.route('/add_restaurants', strict_slashes=False, methods=['POST'])
+def add_restaurants():
+    """Add new restaurants to database
 
     Parameters:
     None 
@@ -52,7 +52,7 @@ def add_restaurant():
 
     payload = request.json
 
-    return db.add_new_restaurant(payload)
+    return db.add_new_restaurants(payload)
 
 
 @app.route('/delete_restaurant/<id>', strict_slashes=False, methods=['POST'])
