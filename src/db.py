@@ -28,8 +28,8 @@ class DB:
     create_new_id():
         Creates new restaurant ID.
 
-    add_new_restaurants(data):
-        Adds new restaurants with the information provided in parameter `data` to the database.
+    add_new_restaurants(restaurants):
+        Adds new restaurants with the information provided in parameter `restaurants` to the database.
 
     delete_restaurant(id):
         Deletes a restaurant from the database.
