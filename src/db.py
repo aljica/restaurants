@@ -142,8 +142,8 @@ class DB:
         Returns:
         _ (str): Dictionary with 1 element ('ids') mapped to a list containing all the ID's of the newly created restaurants (problem with returning lists with Flask, so we return a dictionary instead)
         """
-        # Create new ID
         ids = {'ids': []}
+        # Create new ID
         for restaurant in restaurants:
             id = self.create_new_id()
             info = self.get_info(restaurant)
