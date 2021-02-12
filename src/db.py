@@ -1,10 +1,6 @@
 from pymongo import MongoClient 
 
 
-INFO_PIECES = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo', 'description']
-MUST_HAVES = ['opening_hours', 'address', 'name']
-
-
 class DB:
     """
     A class used to represent a database.
@@ -75,6 +71,31 @@ class DB:
         return restaurants
 
     
+    def get_info(self, restaurant):
+        """Extract the necessary information from a restaurant mongoDB collection.
+
+        Parameters:
+        restaurant (pymongo.Collection): A restaurant collection object OR
+        restaurant (dict): Dictionary containing information on a restaurant
+
+        Returns:
+        info (dict): Information extracted from collection object (opening_hours, address, name etc)
+        """
+        INFO_PIECES = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo', 'description']
+        MUST_HAVES = ['opening_hours', 'address', 'name']
+
+        info = {}
+        for info_piece in INFO_PIECES:
+            try:
+                info[info_piece] = restaurant[info_piece]
+            except KeyError:
+                if info_piece in MUST_HAVES:
+                    return "Failed during data retrieval from your .json file, please double-check the format of your inputs. Must haves are opening_hours, address and name."
+                else:
+                    continue
+        return info
+
+
     def get_restaurant_info(self, id):
         """Get information on a specific restaurant
 
@@ -84,16 +105,8 @@ class DB:
         Returns:
         info (list): Detailed restaurant information OR empty dict if restaurant ID is non-existent OR Exception message
         """
-        info = {}
-        for restaurant in self.collection.find({"id": id}):
-            for info_piece in INFO_PIECES:
-                try:
-                    info[info_piece] = restaurant[info_piece]
-                except KeyError:
-                    if info_piece in MUST_HAVES:
-                        return "Failed during data retrieval from your .json file, please double-check the format of your inputs. Must haves are opening_hours, address and name."
-                    else:
-                        continue
+        for restaurant in self.collection.find({"id": id}): 
+            info = self.get_info(restaurant)
         return info
 
 
@@ -128,22 +141,13 @@ class DB:
         """
         # Create new ID
         for restaurant in restaurants:
-            insert_data = {}
             id = self.create_new_id()
-            insert_data['id'] = id
-
-            for info_piece in INFO_PIECES:
-                try:
-                    insert_data[info_piece] = restaurant[info_piece]
-                except KeyError:
-                    if info_piece in MUST_HAVES:
-                        return "Failed during data retrieval from your .json file, please double-check the format of your inputs. Must haves are opening_hours, address and name."
-                    else:
-                        continue
+            info = self.get_info(restaurant)
+            info['id'] = id
             
             # Insert into DB
             try:
-                self.collection.insert_one(insert_data)
+                self.collection.insert_one(info)
             except Exception: return "Failed during data insertion, double-check the format of your inputs"
         
         return "OK"
