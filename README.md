@@ -89,3 +89,4 @@ Some of the suggested features you could try are listed here (Please attempt at 
 * Prevent exact same data from being stored in the DB multiple times (to prevent DoS attacks or other malicious use)
 * If we insert 50 new restaurants to a blank database, then delete restaurants 0-48, then newly inserted restaurants will have ID 50 and on, and not start back from 0. This can be fixed.
 * Handle maximum allowable length of .json files during POSTs, to prevent DoS attacks/malicious use?
+* No error handling is done on add_new_restaurants .json input file, so that'd probably be good to do.
