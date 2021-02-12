@@ -82,7 +82,8 @@ class DB:
         restaurant (dict): Dictionary containing information on a restaurant
 
         Returns:
-        info (dict): Information extracted from collection object (opening_hours, address, name etc)
+        info (dict): Information extracted from collection object (opening_hours, address, name etc) OR
+        _ (str): Exception message
         """
         INFO_PIECES = ['opening_hours', 'address', 'phone_number', 'location', 'icon', 'name', 'price_level', 'rating', 'google_maps_url', 'website', 'photo', 'description']
         MUST_HAVES = ['opening_hours', 'address', 'name']
@@ -108,6 +109,7 @@ class DB:
         Returns:
         info (list): Detailed restaurant information OR empty dict if restaurant ID is non-existent OR Exception message
         """
+        info = {}
         for restaurant in self.collection.find({"id": id}): 
             info = self.get_info(restaurant)
         return info
@@ -147,7 +149,7 @@ class DB:
         for restaurant in restaurants:
             id = self.create_new_id()
             info = self.get_info(restaurant)
-            if not isinstance(info, tuple):
+            if not isinstance(info, dict):
                 # This means an error was raised, i.e. a must_have info_piece was missing from the json data.
                 print("Must_have info_piece missing, skipping.") 
                 continue
@@ -188,5 +190,8 @@ class DB:
         """
         for id in ids:
             result = self.delete_restaurant(id)
-            if result != "OK": return result
+            if result != "OK":
+                print(result)
+                print("Continuing")
+                continue
         return "OK"
