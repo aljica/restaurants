@@ -73,6 +73,18 @@ class DB:
             restaurants.append({'id': id, 'name': name})
         return restaurants
 
+
+    def validate_data(self, info, info_piece):
+        """Validate data in .json files
+
+        Parameters:
+        info (str OR int OR list OR dict): The information to be validated
+
+        Returns:
+        _ (bool): True (valid) or False (invalid)
+        """
+        return True
+
     
     def get_info(self, restaurant):
         """Extract the necessary information from a restaurant mongoDB collection.
@@ -97,6 +109,10 @@ class DB:
                     return "Missing must_have info_piece"
                 else:
                     continue
+            if not self.validate_data(restaurant[info_piece], info_piece):
+                error_msg = info_piece + " was invalid. Please correct it."
+                return error_msg
+        
         return info
 
 
@@ -150,8 +166,8 @@ class DB:
             id = self.create_new_id()
             info = self.get_info(restaurant)
             if not isinstance(info, dict):
-                # This means an error was raised, i.e. a must_have info_piece was missing from the json data.
-                print("Must_have info_piece missing, skipping.") 
+                # This means an error was raised, see possible errors in get_info().
+                print(info) 
                 continue
             info['id'] = id
             
