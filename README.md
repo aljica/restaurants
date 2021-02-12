@@ -6,13 +6,16 @@ This repository contains an implementation of a REST API that can read and write
 
 * Python3
 * [MongoDB](https://www.mongodb.com/)
-* [Ngrok](https://ngrok.com/)
 
 **Libraries**
 
 * Python Standard Library >= 3.8.5
 * [Flask](https://pypi.org/project/Flask/)
 * [pymongo](https://pypi.org/project/pymongo/)
+
+**Optional**
+
+* [Ngrok](https://ngrok.com/)
 
 ## Installation & Usage Instructions
 
