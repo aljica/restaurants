@@ -83,7 +83,8 @@ Some of the suggested features you could try are listed here (Please attempt at 
 ## Possible improvements
 
 * Could be good to do some form of regex-check to validate data input from .json file for the add_restaurant POST method.
-* Prevent exact same data from being stored in the DB multiple times (to prevent DDoS attacks or other malicious use)
+* Prevent exact same data from being stored in the DB multiple times (to prevent DoS attacks or other malicious use)
 * Enable user to add new restaurant without necessarily specifying all info_pieces?
 * What information do we want to return from get_restaurant_info()? Currently, we just randomly decided to return id, name, opening_hours and address.
 * If we insert 50 new restaurants to a blank database, then delete restaurants 0-48, then newly inserted restaurants will have ID 50 and on, and not start back from 0. This can be fixed.
+* Handle maximum allowable length of .json files during POSTs, to prevent DoS attacks/malicious use?
