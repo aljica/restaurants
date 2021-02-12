@@ -75,14 +75,14 @@ class DB:
         id (int): Restaurant ID
 
         Returns:
-        info (list): Detailed restaurant information
+        info (list): Detailed restaurant information OR {} if restaurant ID is non-existent
         """
-        info = []
+        info = {}
         for restaurant in self.collection.find({"id": id}):
             try:
-                info.append({'id': restaurant['id'], 'name': restaurant['name'], 'opening_hours': restaurant['opening_hours'], 'address': restaurant['address']})
+                for info_piece in MUST_HAVES:
+                    info[info_piece] = restaurant[info_piece]
             except KeyError: return {}
-        
         return info
 
     
