@@ -21,6 +21,9 @@ class DB:
     get_restaurant_info(id): 
         Returns detailed information on a single specified (by id) restaurant.
 
+    get_info(restaurant):
+        Extract the necessary information from a restaurant mongoDB collection or dictionary containing information on a restaurant.
+
     create_new_id():
         Creates new restaurant ID.
 
