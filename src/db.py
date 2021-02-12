@@ -141,11 +141,3 @@ class DB:
             result = self.collection.delete_one({'id': id})
             return "OK"
         except Exception: return "Failed during deletion"
-
-
-#def main():
-#    db = DB('viaplay')
-
-
-#if __name__ == "__main__":
-#    main()
