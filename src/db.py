@@ -117,34 +117,36 @@ class DB:
         return id
 
 
-    def add_new_restaurant(self, data):
+    def add_new_restaurant(self, restaurants):
         """Add new restaurant to the database
 
         Parameters:
         data (dict): Dict containing information on the new restaurant to be added
 
         Returns:
-        _ (str): ID of new restaurant or Exception message
+        _ (str): OK or Exception message
         """
         # Create new ID
-        insert_data = {}
-        id = self.create_new_id()
-        insert_data['id'] = id
+        for restaurant in restaurants:
+            insert_data = {}
+            id = self.create_new_id()
+            insert_data['id'] = id
 
-        for info_piece in INFO_PIECES:
+            for info_piece in INFO_PIECES:
+                try:
+                    insert_data[info_piece] = restaurant[info_piece]
+                except KeyError:
+                    if info_piece in MUST_HAVES:
+                        return "Failed during data retrieval from your .json file, please double-check the format of your inputs. Must haves are opening_hours, address and name."
+                    else:
+                        continue
+            
+            # Insert into DB
             try:
-                insert_data[info_piece] = data[info_piece]
-            except KeyError:
-                if info_piece in MUST_HAVES:
-                    return "Failed during data retrieval from your .json file, please double-check the format of your inputs. Must haves are opening_hours, address and name."
-                else:
-                    continue
+                self.collection.insert_one(insert_data)
+            except Exception: return "Failed during data insertion, double-check the format of your inputs"
         
-        # Insert into DB
-        try:
-            self.collection.insert_one(insert_data)
-            return str(id)
-        except Exception: return "Failed during data insertion, double-check the format of your inputs"
+        return "OK"
 
 
     def delete_restaurant(self, id):
