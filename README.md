@@ -88,3 +88,4 @@ Some of the suggested features you could try are listed here (Please attempt at 
 * What information do we want to return from get_restaurant_info()? Currently, we just randomly decided to return id, name, opening_hours and address.
 * If we insert 50 new restaurants to a blank database, then delete restaurants 0-48, then newly inserted restaurants will have ID 50 and on, and not start back from 0. This can be fixed.
 * Handle maximum allowable length of .json files during POSTs, to prevent DoS attacks/malicious use?
+* Could modify the schema of the database to include a "description" field which shows up in conjunction with get_all_restaurants().
