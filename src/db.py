@@ -56,16 +56,17 @@ class DB:
         None 
 
         Returns:
-        List of restaurant id:s and names
+        restaurants (list): List of restaurant id:s and names
         """
-        restaurant_names = []
+        restaurants = []
         for restaurant in self.collection.find():
             try:
                 id = restaurant['id']
                 name = restaurant['name']
-            except KeyError: return "Internal DB error, looks like some restaurants don't have ID and/or name."
-            restaurant_names.append({'id': id, 'name': name})
-        return restaurant_names
+            except KeyError: 
+                return "Internal DB error, looks like some restaurants don't have ID and/or name."
+            restaurants.append({'id': id, 'name': name})
+        return restaurants
 
     
     def get_restaurant_info(self, id):
@@ -75,7 +76,7 @@ class DB:
         id (int): Restaurant ID
 
         Returns:
-        info (list): Detailed restaurant information OR {} if restaurant ID is non-existent
+        info (list): Detailed restaurant information OR empty dict if restaurant ID is non-existent OR Exception message
         """
         info = {}
         for restaurant in self.collection.find({"id": id}):

@@ -29,8 +29,9 @@ def restaurant_info(id):
     id (str): Restaurant ID
 
     Returns:
-    _ (str): Jsonified single restaurant data OR
-    _ (dict): If integer conversion fails or if restaurant ID is non-existent in the database
+    _ (dict): Jsonified single restaurant data OR
+    _ (dict): If integer conversion fails or if restaurant ID is non-existent in the database OR
+    _ (str): Exception message
     """
     try: id = int(id) 
     except Exception: return {}
