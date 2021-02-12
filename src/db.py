@@ -94,7 +94,7 @@ class DB:
                 info[info_piece] = restaurant[info_piece]
             except KeyError:
                 if info_piece in MUST_HAVES:
-                    return "Failed during data retrieval from your .json file, please double-check the format of your inputs. Must haves are opening_hours, address and name."
+                    return "Missing must_have info_piece"
                 else:
                     continue
         return info
