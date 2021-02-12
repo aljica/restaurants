@@ -147,6 +147,10 @@ class DB:
         for restaurant in restaurants:
             id = self.create_new_id()
             info = self.get_info(restaurant)
+            if not isinstance(info, tuple):
+                # This means an error was raised, i.e. a must_have info_piece was missing from the json data.
+                print("Must_have info_piece missing, skipping.") 
+                continue
             info['id'] = id
             
             # Insert into DB
