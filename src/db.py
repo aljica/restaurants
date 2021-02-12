@@ -85,10 +85,10 @@ class DB:
         """Add new restaurant to the database
 
         Parameters:
-        data (list): List containing information on the new restaurant to be added
+        data (dict): Dict containing information on the new restaurant to be added
 
         Returns:
-        _ (str): OK or Exception message
+        _ (str): ID of new restaurant or Exception message
         """
         insert_data = {}
         id = 0
@@ -114,7 +114,7 @@ class DB:
         
         try:
             self.collection.insert_one(insert_data)
-            return "OK"
+            return str(id) + " restaurant ID"
         except Exception: return "Failed during data insertion, double-check the format of your inputs"
 
 
