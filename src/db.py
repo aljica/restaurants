@@ -18,11 +18,11 @@ class DB:
     get_all_restaurants(): 
         Returns a list of all restaurants in the database.
 
-    get_restaurant_info(id): 
-        Returns detailed information on a single specified (by id) restaurant.
-
     get_info(restaurant):
         Extract the necessary information from a restaurant mongoDB collection or dictionary containing information on a restaurant.
+
+    get_restaurant_info(id): 
+        Returns detailed information on a single specified (by id) restaurant.
 
     create_new_id():
         Creates new restaurant ID.
