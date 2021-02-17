@@ -161,7 +161,7 @@ class DB:
         data (dict): Dict containing information on the new restaurants to be added
 
         Returns:
-        _ (str): Dictionary with 1 element ('ids') mapped to a list containing all the ID's of the newly created restaurants (problem with returning lists with Flask, so we return a dictionary instead)
+        ids (dict): Dictionary with 1 element ('ids') mapped to a list containing all the ID's of the newly created restaurants (problem with returning lists with Flask, so we return a dictionary instead)
         """
         ids = {'ids': []}
         # Create new ID
