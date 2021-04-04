@@ -1,6 +1,6 @@
 # Restaurants
 
-This repository contains an implementation of a REST API that can read and write into the provided db while providing endpoints to clients from which they will be able to perform basic CRUD (Create, Read, Update, Delete) operations on the database. 
+This repository contains an implementation of an API that can read and write into the provided db while providing endpoints to clients from which they will be able to perform basic CRUD (Create, Read, Update, Delete) operations on the database. 
 
 ## Prerequisites
 
